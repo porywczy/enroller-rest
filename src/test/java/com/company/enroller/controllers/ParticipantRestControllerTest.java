@@ -18,6 +18,7 @@ import java.util.Collection;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -137,7 +138,7 @@ public class ParticipantRestControllerTest {
 		participant.setPassword("testpassword");
 
 //		given(participantService.findByLogin(participant.getLogin())).willReturn(participant);
-//
+		Mockito.doNothing().when(participantService).delete(participant);
 //		String participantJSON = new ObjectMapper().writeValueAsString(participant);
 
 		mvc.perform(delete("/participants/testlogin").contentType(MediaType.APPLICATION_JSON))
